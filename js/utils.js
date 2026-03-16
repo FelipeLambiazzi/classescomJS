@@ -25,3 +25,13 @@ export function contarClientes(clientes) {
 export function extrairNomes(clientes) {
   return clientes.map((cliente) => cliente.nome);
 }
+
+export function mostrarToast(mensagem) {
+  const toast = document.getElementById("toast");
+  toast.textContent = mensagem;
+  toast.classList.add("mostrar");
+
+  setTimeout(() => {
+    toast.classList.remove("mostrar");
+  }, 3000);
+}

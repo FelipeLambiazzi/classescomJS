@@ -5,7 +5,8 @@ import {
   limparFormulario,
   buscarClientePorId,
   contarClientes,
-  extrairNomes
+  extrairNomes,
+  mostrarToast
 } from "./utils.js";
 
 const formCliente = document.getElementById("formCliente");
@@ -14,8 +15,11 @@ const inputEmail = document.getElementById("email");
 const btnCarregar = document.getElementById("btnCarregar");
 const listaClientes = document.getElementById("listaClientes");
 const modeloCliente = document.getElementById("modeloCliente");
+const totalClientes = document.getElementById("totalClientes");
 
 const clienteService = new ClienteService();
+
+let clientesCarregados = [];
 
 formCliente.addEventListener("submit", cadastrarCliente);
 btnCarregar.addEventListener("click", listarClientes);
@@ -28,16 +32,26 @@ function iniciarApp() {
 
 function listarClientes() {
   limparLista();
+  const total = contarClientes(clientes);
+  totalClientes.textContent = `Total de clientes: ${total}`;
 
   clienteService
     .obterClientes()
     .then((clientes) => {
+      clientesCarregados = clientes;
+
       clientes.forEach((cliente) => {
         renderizarCliente(cliente);
       });
+
+      const total = contarClientes(clientes);
+      const nomes = extrairNomes(clientes);
+
+      mostrarToast(`Total: ${total} cliente(s) | Nomes: ${nomes.join(", ")}`);
     })
     .catch((erro) => {
       console.error("Erro ao listar clientes:", erro);
+      mostrarToast("Erro ao carregar clientes.");
     });
 }
 
@@ -64,7 +78,7 @@ function cadastrarCliente(event) {
   const { nome, email } = obterDadosFormulario(inputNome, inputEmail);
 
   if (!camposPreenchidos(nome, email)) {
-    alert("Por favor, preencha todos os campos.");
+    mostrarToast("Preencha todos os campos.");
     return;
   }
 
@@ -74,21 +88,28 @@ function cadastrarCliente(event) {
     .criarCliente(novoCliente)
     .then(() => {
       limparFormulario(inputNome, inputEmail);
+      mostrarToast("Cliente cadastrado com sucesso.");
       listarClientes();
     })
     .catch((erro) => {
       console.error("Erro ao cadastrar cliente:", erro);
+      mostrarToast("Erro ao cadastrar cliente.");
     });
 }
 
 function excluirCliente(id) {
+  const clienteEncontrado = buscarClientePorId(clientesCarregados, id);
+
   clienteService
     .removerCliente(id)
     .then(() => {
+      const nomeCliente = clienteEncontrado ? clienteEncontrado.nome : "Cliente";
+      mostrarToast(`${nomeCliente} foi excluído.`);
       listarClientes();
     })
     .catch((erro) => {
       console.error("Erro ao excluir cliente:", erro);
+      mostrarToast("Erro ao excluir cliente.");
     });
 }
 
