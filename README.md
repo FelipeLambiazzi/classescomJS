@@ -1,19 +1,20 @@
-# 📋 Cadastro de Clientes com JavaScript Modular
+# 📋 Cadastro de Clientes Modular com JavaScript
 
-Aplicação web desenvolvida para cadastrar, listar e excluir clientes utilizando **JavaScript moderno**, **Programação Orientada a Objetos (POO)**, **ES Modules** e integração com a API do **CrudCrud**.
+Aplicação web para **cadastrar, listar e excluir clientes**, desenvolvida com **JavaScript moderno**, **Programação Orientada a Objetos (POO)**, **ES Modules** e integração com a API do **CrudCrud**.
 
 ---
 
-## 🚀 Objetivo do Projeto
+## 🚀 Objetivo
 
-Este projeto foi criado com o objetivo de praticar a refatoração de uma aplicação JavaScript, melhorando:
+Este projeto foi criado para praticar a **refatoração de uma aplicação JavaScript**, aplicando:
 
-- organização do código
 - separação de responsabilidades
-- reutilização de funções
-- legibilidade
 - modularização com `import` e `export`
-- aplicação de conceitos de **POO** e **Programação Funcional**
+- Programação Orientada a Objetos
+- Programação Funcional com `find()`, `map()` e `reduce()`
+- manipulação dinâmica do DOM
+- validação de formulário
+- atualização da interface sem recarregar a página
 
 ---
 
