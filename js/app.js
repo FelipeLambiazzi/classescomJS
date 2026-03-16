@@ -32,8 +32,6 @@ function iniciarApp() {
 
 function listarClientes() {
   limparLista();
-  const total = contarClientes(clientes);
-  totalClientes.textContent = `Total de clientes: ${total}`;
 
   clienteService
     .obterClientes()
@@ -47,7 +45,8 @@ function listarClientes() {
       const total = contarClientes(clientes);
       const nomes = extrairNomes(clientes);
 
-      mostrarToast(`Total: ${total} cliente(s) | Nomes: ${nomes.join(", ")}`);
+      totalClientes.textContent = `Total de clientes: ${total}`;
+      mostrarToast(`Nomes: ${nomes.join(", ")}`);
     })
     .catch((erro) => {
       console.error("Erro ao listar clientes:", erro);
