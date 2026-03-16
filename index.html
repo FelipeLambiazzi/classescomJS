@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro de Clientes</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>Cadastro de Clientes</h1>
+      <p class="subtitulo">
+        Aplicação para cadastrar, listar e excluir clientes usando CrudCrud.
+      </p>
+
+      <section class="card">
+        <h2>Novo Cliente</h2>
+
+        <form id="formCliente">
+          <div class="campo">
+            <label for="nome">Nome</label>
+            <input
+              type="text"
+              id="nome"
+              name="nome"
+              placeholder="Digite o nome do cliente"
+            />
+          </div>
+
+          <div class="campo">
+            <label for="email">E-mail</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Digite o e-mail do cliente"
+            />
+          </div>
+
+          <button type="submit" id="btnSalvar">Salvar Cliente</button>
+        </form>
+
+        <button type="button" id="btnCarregar">Carregar Clientes</button>
+      </section>
+
+      <section class="card">
+        <h2>Lista de Clientes</h2>
+        <ul id="listaClientes">
+          <li id="modeloCliente" name="cliente-item" style="display: none;">
+            <div class="info-cliente">
+              <p class="nome-cliente"></p>
+              <p class="email-cliente"></p>
+            </div>
+            <button type="button" name="btn-excluir">Excluir</button>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>
